@@ -1,5 +1,3 @@
-# Get Started with Kingfisher
-
 Kingfisher is a lightweight and pure Swift implemented library for downloading and caching image from the web. This project is heavily inspired by the popular [SDWebImage](https://github.com/rs/SDWebImage). And it provides you a chance to use pure Swift alternative in your next app.
 
 ## Features
@@ -30,7 +28,7 @@ It will download the image from `url`, send it to both memory and disk cache, th
 
 ## Next
 
-Follow the [installation guide](https://github.com/onevcat/Kingfisher/wiki/Install-Kingfisher) to integrate Kingfisher to your project.
+Follow the [Installation Guide](https://github.com/onevcat/Kingfisher/wiki/Install-Kingfisher) to integrate Kingfisher to your project.
 
 Curious about what Kingfisher could do and how would it look like when used in your project? See our [Cheat Sheet](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet) page, in which some useful code snippet are listed.
 

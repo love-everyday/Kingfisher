@@ -1,6 +1,6 @@
 ## Get Started
 
-* [Get Started with Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Get-Started-with-Kingfisher)
+* [Getting Started with Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Getting-Started-with-Kingfisher)
     * [Install Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Install-Kingfisher)
     * [Cheat Sheet](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet)
     * [Concept and Modules](https://github.com/onevcat/Kingfisher/wiki/Concept-and-Modules)
