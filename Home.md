@@ -1,4 +1,4 @@
-## Get Started
+## Getting Started
 
 * [Getting Started with Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Getting-Started-with-Kingfisher)
     * [Install Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Install-Kingfisher)
