@@ -1,5 +1,7 @@
 ![](https://raw.githubusercontent.com/onevcat/Kingfisher/master/images/logo.png)
 
+> #### A lightweight and pure Swift implemented library for downloading and caching image from the web.
+
 ## Getting Started
 
 * [Getting Started with Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Getting-Started-with-Kingfisher)
