@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/onevcat/Kingfisher/master/images/logo.png)
+
 ## Getting Started
 
 * [Getting Started with Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Getting-Started-with-Kingfisher)
