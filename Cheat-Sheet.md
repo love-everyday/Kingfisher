@@ -32,7 +32,7 @@ imageView.kf_setImage(with: url, placeholder: image)
 #### With a completion handler
 
 ```swift
-imageView.kf_setImage(with: url, completionHandler { 
+imageView.kf_setImage(with: url, completionHandler: { 
     (image, error, cacheType, imageUrl) in
     // image: Image? `nil` means failed
     // error: NSError? non-`nil` means failed
