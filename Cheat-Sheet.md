@@ -398,6 +398,23 @@ struct MyCIFilter: CIImageProcessor {
 }
 ```
 
+#### Use processor with `ImageCache`
+
+Although the `process` method of a `ImageProcessor` is only used in `ImageDownloader` to process the image right after the downloading, the `identidier` will be used when caching the processed images. Without the `identidier`, Kingfisher will not be able to tell which is the correct image in cache (Think about you have to store two version of an image from the same url, one should be filtered and another should be kept original).
+
+When you use the extension methods of Kingfisher, please make sure to pass the `ImageProcessor` with options correctly, and Kingfisher will handle other things for you. However, there might be a chance that you need to interact with `ImageCache` yourself, for examle, to check whether a processed image already cached or not. In such situation, besides of passing in the key, you also need to supply the `identidier`:
+
+```swift
+let processor = WebpProcessor()
+let url = URL(string: "https://yourdomain.com/example.webp")
+imageView.kf_setImage(with: url, options: [.processor(processor)])
+
+// Later
+ImageCache.default.isImageCached(
+         forKey: url.cacheKey, 
+         processorIdentifier: processor.identifier)
+```
+
 ### Serializer
 
 `CacheSerializer` will be used to convert some data to an image object for retrieving from disk cache and vice versa for storing to disk cache.
