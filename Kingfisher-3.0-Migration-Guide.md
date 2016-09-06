@@ -68,6 +68,8 @@ This affects all enum type in Kingfisher, including: `KingfisherOptionsInfoItem`
 
 Now all foundation types in Kingfisher are value-sematic version of these types. From Kingfisher 3, `URL`, `Data` or `URLSession` are used, instead of their class-varieties with `NS` prefix (`NSURL`, `NSData` or `NSURLSession`).
 
+---
+
 #### Resource
 
 ![][modify]
