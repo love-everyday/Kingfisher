@@ -26,15 +26,15 @@ It will download the image from `url`, send it to both memory and disk cache, th
 ## Requirements
 
 - iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+
-- Swift 3 (Kingfisher 3.x), Swift 2.3 (Kingfisher 2.5.x)
+- Swift 3 (Kingfisher 3.x), Swift 2.3 (Kingfisher 2.x)
 
-## Next
+## Next Step
 
-Follow the [Installation Guide](https://github.com/onevcat/Kingfisher/wiki/Install-Kingfisher) to integrate Kingfisher to your project.
+Follow the [Installation Guide](https://github.com/onevcat/Kingfisher/wiki/Installation-Guide) to integrate Kingfisher to your project.
 
-Curious about what Kingfisher could do and how would it look like when used in your project? See our [Cheat Sheet](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet) page, in which some useful code snippet are listed.
+Curious about what Kingfisher could do and how would it look like when used in your project? See our [Cheat Sheet](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet) page, in which some useful code snippet are listed. There you can learn how to use Kingfisher in your project better.
 
-We also introduced the [Concept and Modules](https://github.com/onevcat/Kingfisher/wiki/Concept-and-Modules) of Kingfisher in depth to help you understand how does this framework work. At last, also remember to check the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) whenever you need to know more about Kingfisher.
+At last, please also remember to check the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) whenever you need to know more about Kingfisher.
 
 ## Other
 

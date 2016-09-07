@@ -86,7 +86,7 @@ let processor = BlurImageProcessor(blurRadius: 4) |> RoundCornerImageProcessor(c
 imageView.kf_setImage(with: url, placeholder: nil, options: [.processor(processor)])
 ```
 
-#### Skip cache searching, force downloading again 
+#### Skip cache searching, force downloading image again 
 
 ```swift
 imageView.kf_setImage(with: url, options: [.forceRefresh])
@@ -452,6 +452,33 @@ let serializer = WebpCacheSerializer()
 let url = URL(string: "https://yourdomain.com/example.webp")
 imageView.kf_setImage(with: url, options: [.cacheSerializer(serializer)])
 ```
+
+### Prefetch
+
+You could prefetch some images and cache them before you display them on the screen. This is useful when you know a list of image resources you know they would probably be shown later.
+
+```swift
+let urls = ["http://example.com/image1.jpg", "http://example.com/image2.jpg"]
+           .map { URL(string: $0)! }
+let prefetcher = ImagePrefetcher(urls: urls) {
+    skippedResources, failedResources, completedResources in
+    print("These resources are prefetched: \(completedResources)")
+}
+prefetcher.start()
+
+// Later when you need to display these images:
+imageView.kf_setImage(with: urls[0])
+anotherImageView.kf_setImage(with: urls[1])
+```
+
+### Animated GIF
+
+```swift
+let imageView = AnimatedImageView()
+imageView.kf_setImage(with: URL(string: "your_animated_gif_image_url")!)
+```
+
+> Use `AnimatedImageView` instead of regular image view to display GIF in a more efficient way. It will only decode several frames of your GIF image to get a smaller memory footprint. You can set the frame count you need to pre-load by setting the framePreloadCount property of an `AnimatedImageView` (default is 10).
 
 ### Useful image extensions
 
