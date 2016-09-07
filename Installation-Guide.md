@@ -1,3 +1,5 @@
+> #### Everything has a beginning. For using a framework, it's installation.
+
 ## Versions
 
 Kingfisher supports Swift 3 from [version 3.0](https://github.com/onevcat/Kingfisher/releases/tag/3.0.0). The latest Kingfisher version compatible with Swift 2.3 and prior is version 2.5.x. See the [release page](https://github.com/onevcat/Kingfisher/releases) to find the version you need. We will use the latest version in this guide. But the installation process should be the same for all versions.
@@ -92,7 +94,7 @@ let package = Package(
 )
 ```
 
-Then run swift build whenever you get prepared.
+Then run `swift build` whenever you get prepared.
 
 You could know more information on how to use Swift Package Manager in Apple's [official page](https://swift.org/package-manager/).
 

@@ -1,3 +1,5 @@
+> #### Feel free to copy & paste code below.
+
 This documentation will describe some most common usage of Kingfisher. The code snippet is based on iOS. However, the similar code should also work for other platforms like macOS, by replacing the corresponding class (such as `UIImage` to `NSImage`, etc).
 
 ### Working with Kingfisher extensions for UI component
