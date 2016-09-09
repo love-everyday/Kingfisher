@@ -82,7 +82,7 @@ imageView.kf_setImage(with: url, placeholder: nil, options: [.processor(processo
 #### Apply multiple processor before setting the image
 
 ```swift
-let processor = BlurImageProcessor(blurRadius: 4) |> RoundCornerImageProcessor(cornerRadius: 20)
+let processor = BlurImageProcessor(blurRadius: 4) >> RoundCornerImageProcessor(cornerRadius: 20)
 imageView.kf_setImage(with: url, placeholder: nil, options: [.processor(processor)])
 ```
 
@@ -347,10 +347,10 @@ imageView.kf_setImage(with: url, options: [.processor(processor)])
 
 ```swift
 // Blur and then make round corner
-let processor = BlurImageProcessor(blurRadius: 5.0) |> RoundCornerImageProcessor(cornerRadius: 20)
+let processor = BlurImageProcessor(blurRadius: 5.0) >> RoundCornerImageProcessor(cornerRadius: 20)
 imageView.kf_setImage(with: url, options: [.processor(processor)])
 
-// `|>` equals the `append(another:)` method of `ImageProcessor`.
+// `>>` equals the `append(another:)` method of `ImageProcessor`.
 // Above equals to:
 let processor = BlurImageProcessor(blurRadius: 5.0).append(RoundCornerImageProcessor(cornerRadius: 20))
 ```
