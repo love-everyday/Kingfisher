@@ -195,12 +195,12 @@ func kf_setBackgroundImageWithResource(resource: Resource?,
 Now:
 
 ```swift
-kf_setBackgroundImage(with resource: Resource?,
-                          for state: UIControlState,
-                        placeholder: UIImage? = nil,
-                            options: KingfisherOptionsInfo? = nil,
-                      progressBlock: DownloadProgressBlock? = nil,
-                  completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
+func kf_setBackgroundImage(with resource: Resource?,
+                               for state: UIControlState,
+                             placeholder: UIImage? = nil,
+                                 options: KingfisherOptionsInfo? = nil,
+                           progressBlock: DownloadProgressBlock? = nil,
+                       completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
 ```
 
 ---
@@ -208,12 +208,12 @@ kf_setBackgroundImage(with resource: Resource?,
 ![][remove]
 
 ```swift
-kf_setImageWithURL(URL: NSURL?,
-        forState state: UIControlState,
-      placeholderImage: UIImage? = nil,
-           optionsInfo: KingfisherOptionsInfo? = nil,
-         progressBlock: DownloadProgressBlock? = nil,
-     completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
+func kf_setImageWithURL(URL: NSURL?,
+             forState state: UIControlState,
+           placeholderImage: UIImage? = nil,
+                optionsInfo: KingfisherOptionsInfo? = nil,
+              progressBlock: DownloadProgressBlock? = nil,
+          completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
 ```
 
 > Use the `Resource` version above.
@@ -223,17 +223,65 @@ kf_setImageWithURL(URL: NSURL?,
 ![][remove]
 
 ```swift
-kf_setBackgroundImageWithURL(URL: NSURL?,
-                  forState state: UIControlState,
-                placeholderImage: UIImage? = nil,
-                     optionsInfo: KingfisherOptionsInfo? = nil,
-                   progressBlock: DownloadProgressBlock? = nil,
-               completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
+func kf_setBackgroundImageWithURL(URL: NSURL?,
+                       forState state: UIControlState,
+                     placeholderImage: UIImage? = nil,
+                          optionsInfo: KingfisherOptionsInfo? = nil,
+                        progressBlock: DownloadProgressBlock? = nil,
+                    completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
 ```
 
 > Use the `Resource` version above.
 
 ---
+
+![][remove]
+```swift
+var kf_showIndicatorWhenLoading: Bool { get set }
+```
+
+> The indicators now could be customized. Use `kf_indicatorType` instead. If you just need a system activity indicator like before, set `imageView.kf_indicatorType = .activity`.
+
+---
+
+![][add]
+
+```swift
+var kf_indicatorType { get set }
+```
+
+> Use this property for setting & customizing the indicator while loading an image. See options below.
+
+---
+
+![][add]
+
+```swift
+protocol Indicator { ... }
+```
+
+---
+
+![][add]
+
+```swift
+enum ImageView.IndicatorType {
+    /// No indicator.
+    case none
+    /// Use system activity indicator.
+    case activity
+    /// Use an image as indicator. GIF is supported.
+    case image(imageData: Data)
+    /// Use a custom indicator, which conforms to the `Indicator` protocol.
+    case custom(indicator: Indicator)
+}
+```
+
+---
+
+```swift
+var kf_indicatorType: IndicatorType { get set }
+```
 
 ##### NSButton Extensions
 
@@ -266,11 +314,11 @@ func kf_setImage(with resource: Resource?,
 Before:
 
 ```swift
-kf_setAlternateImageWithResource(resource: Resource?,
-                         placeholderImage: Image? = nil,
-                              optionsInfo: KingfisherOptionsInfo? = nil,
-                            progressBlock: DownloadProgressBlock? = nil,
-                        completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
+func kf_setAlternateImageWithResource(resource: Resource?,
+                              placeholderImage: Image? = nil,
+                                   optionsInfo: KingfisherOptionsInfo? = nil,
+                                 progressBlock: DownloadProgressBlock? = nil,
+                             completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
 ```
 
 Now: 

@@ -49,8 +49,37 @@ imageView.kf_setImage(with: url, completionHandler: {
 #### With a loading indicator while downloading
 
 ```swift
-imageView.kf_showIndicatorWhenLoading = true
+imageView.kf_indicatorType = .activity
 imageView.kf_setImage(with: url)
+```
+
+#### Use your own GIF file or any image as the indicator image while downloading
+
+```swift
+let p = Bundle.main.path(forResource: "loader", ofType: "gif")!
+let data = try! Data(contentsOf: URL(fileURLWithPath: p))
+
+imageView.kf_indicatorType = .image(imageData: data)
+
+imageView.kf_setImage(with: url)
+```
+
+#### Customize the indicator with any view you want
+
+```swift
+struct MyIndicator: Indicator {
+    let view: UIView = UIView()
+    
+    func startAnimatingView() { view.isHidden = false }
+    func stopAnimatingView() { view.isHidden = true }
+    
+    init() {
+        view.backgroundColor = .red
+    }
+}
+
+let i = MyIndicator()
+imageView.kf_indicatorType = .custom(indicator: i)
 ```
 
 #### Or update your own indicator UI with progress block
@@ -60,7 +89,7 @@ imageView.kf_setImage(with: url, progressBlock: {
     receivedSize, totalSize in
     let percentage = (Float(receivedSize) / Float(totalSize)) * 100.0
     print("downloading progress: \(percentage)%")
-    yourIndicator.percentage = percentage
+    myIndicator.percentage = percentage
 })
 ```
 
