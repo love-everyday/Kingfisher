@@ -2,7 +2,7 @@
 
 ## Versions
 
-Kingfisher supports Swift 3 from [version 3.0](https://github.com/onevcat/Kingfisher/releases/tag/3.0.0). The latest Kingfisher version compatible with Swift 2.3 and prior is version 2.5.x. See the [release page](https://github.com/onevcat/Kingfisher/releases) to find the version you need. We will use the latest version in this guide. But the installation process should be the same for all versions.
+Kingfisher supports Swift 3 from [version 3.0](https://github.com/onevcat/Kingfisher/releases/tag/3.0.0). The latest Kingfisher version compatible with Swift 2.3 and prior is version 2.6.x. See the [release page](https://github.com/onevcat/Kingfisher/releases) to find the version you need. We will use the latest version in this guide. But the installation process should be the same for all versions.
 
 ## Installation
 
