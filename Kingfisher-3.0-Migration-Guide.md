@@ -927,9 +927,13 @@ init(resources: [Resource],
      completionHandler: PrefetcherCompletionHandler? = nil)
 ```
 
+---
+
 #### ImageTransition
 
 Enum members now follow lowercase naming convention. See "[Enum Member](#enum-member)" part of this documentation.
+
+---
 
 #### KingfisherOptionsInfo
 
