@@ -279,9 +279,13 @@ enum ImageView.IndicatorType {
 
 ---
 
+![][add]
+
 ```swift
 var kf_indicatorType: IndicatorType { get set }
 ```
+
+---
 
 ##### NSButton Extensions
 
@@ -1072,5 +1076,4 @@ struct AnyModifier: ImageDownloadRequestModifier { ... }
 [add]: https://img.shields.io/badge/api-add-green.svg
 [modify]: https://img.shields.io/badge/api-modify-yellow.svg
 [remove]: https://img.shields.io/badge/api-remove-red.svg
-
 
