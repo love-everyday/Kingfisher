@@ -345,7 +345,7 @@ imageView.kf_setImage(with: url, options: [.processor(DefaultImageProcessor.defa
 
 > `DefaultImageProcessor` converts downloaded data to a corresponded image object. PNG, JPEG and GIF are supported by default.
 
-#### Built-in processor of Kingfisher
+#### Built-in processors of Kingfisher
 
 ```swift
 // Round corner
