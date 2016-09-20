@@ -763,7 +763,7 @@ func cachePath(forKey key: String,
 var requestModifier: ((inout URLRequest) -> Void)?
 ```
 
-> Use `.requestModifier` in `KingfisherOptionsInfo` instead. See [Modify a request before sending](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet#modify-a-request-before-sending) for mroe.
+> Use `.requestModifier` in `KingfisherOptionsInfo` instead. See [Modify a request before sending](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet#modify-a-request-before-sending) for more.
 
 ---
 
