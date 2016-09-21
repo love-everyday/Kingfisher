@@ -21,7 +21,7 @@ to follow the new API design in Swift 3:
 
 ```swift
 let url = URL(string: "http://domain.com/image.png")!
-imageView.kf_setImage(with: url, 
+imageView.kf.setImage(with: url, 
                placeholder: nil,
                    options: [.transition(.fade(1))],
              progressBlock: nil,
@@ -128,7 +128,7 @@ func kf_setImageWithResource(resource: Resource?,
 Now:
 
 ```swift
-func kf_setImage(with resource: Resource?,
+func kf.setImage(with resource: Resource?,
                    placeholder: Image? = nil,
                        options: KingfisherOptionsInfo? = nil,
                  progressBlock: DownloadProgressBlock? = nil,
@@ -169,7 +169,7 @@ func kf_setImageWithResource(resource: Resource?,
 Now:
 
 ```swift
-func kf_setImage(with resource: Resource?,
+func kf.setImage(with resource: Resource?,
                      for state: UIControlState,
                    placeholder: UIImage? = nil,
                        options: KingfisherOptionsInfo? = nil,
@@ -195,7 +195,7 @@ func kf_setBackgroundImageWithResource(resource: Resource?,
 Now:
 
 ```swift
-func kf_setBackgroundImage(with resource: Resource?,
+func kf.setBackgroundImage(with resource: Resource?,
                                for state: UIControlState,
                              placeholder: UIImage? = nil,
                                  options: KingfisherOptionsInfo? = nil,
@@ -240,14 +240,14 @@ func kf_setBackgroundImageWithURL(URL: NSURL?,
 var kf_showIndicatorWhenLoading: Bool { get set }
 ```
 
-> The indicators now could be customized. Use `kf_indicatorType` instead. If you just need a system activity indicator like before, set `imageView.kf_indicatorType = .activity`.
+> The indicators now could be customized. Use `kf.indicatorType` instead. If you just need a system activity indicator like before, set `imageView.kf.indicatorType = .activity`.
 
 ---
 
 ![][add]
 
 ```swift
-var kf_indicatorType { get set }
+var kf.indicatorType { get set }
 ```
 
 > Use this property for setting & customizing the indicator while loading an image. See options below.
@@ -282,7 +282,7 @@ enum ImageView.IndicatorType {
 ![][add]
 
 ```swift
-var kf_indicatorType: IndicatorType { get set }
+var kf.indicatorType: IndicatorType { get set }
 ```
 
 ---
@@ -304,7 +304,7 @@ func kf_setImageWithResource(resource: Resource?,
 Now: 
 
 ```swift
-func kf_setImage(with resource: Resource?,
+func kf.setImage(with resource: Resource?,
                    placeholder: Image? = nil,
                        options: KingfisherOptionsInfo? = nil,
                  progressBlock: DownloadProgressBlock? = nil,
@@ -328,7 +328,7 @@ func kf_setAlternateImageWithResource(resource: Resource?,
 Now: 
 
 ```swift
-func kf_setAlternateImage(with resource: Resource?,
+func kf.setAlternateImage(with resource: Resource?,
                             placeholder: Image? = nil,
                                 options: KingfisherOptionsInfo? = nil,
                           progressBlock: DownloadProgressBlock? = nil,
@@ -378,7 +378,7 @@ func kf_normalizedImage() -> Image
 Now:
 
 ```swift
-func kf_normalized() -> Image
+func kf.normalized -> Image
 ```
 
 ---
@@ -386,7 +386,7 @@ func kf_normalized() -> Image
 ![][add]
 
 ```swift
-func kf_image(withRoundRadius radius: CGFloat, fit size: CGSize, scale: CGFloat) -> Image
+func kf.image(withRoundRadius radius: CGFloat, fit size: CGSize, scale: CGFloat) -> Image
 ```
 
 ---
@@ -394,7 +394,7 @@ func kf_image(withRoundRadius radius: CGFloat, fit size: CGSize, scale: CGFloat)
 ![][add]
 
 ```swift
-func kf_resize(to size: CGSize) -> Image
+func kf.resize(to size: CGSize) -> Image
 ```
 
 ---
@@ -402,7 +402,7 @@ func kf_resize(to size: CGSize) -> Image
 ![][add]
 
 ```swift
-func kf_blurred(withRadius radius: CGFloat) -> Image
+func kf.blurred(withRadius radius: CGFloat) -> Image
 ```
 
 ---
@@ -410,7 +410,7 @@ func kf_blurred(withRadius radius: CGFloat) -> Image
 ![][add]
 
 ```swift
-func kf_overlaying(with color: Color, fraction: CGFloat) -> Image
+func kf.overlaying(with color: Color, fraction: CGFloat) -> Image
 ```
 
 ---
@@ -418,7 +418,7 @@ func kf_overlaying(with color: Color, fraction: CGFloat) -> Image
 ![][add]
 
 ```swift
-func kf_tinted(with color: Color) -> Image
+func kf.tinted(with color: Color) -> Image
 ```
 
 ---
@@ -426,7 +426,7 @@ func kf_tinted(with color: Color) -> Image
 ![][add]
 
 ```swift
-func kf_adjusted(brightness: CGFloat, 
+func kf.adjusted(brightness: CGFloat, 
                    contrast: CGFloat, 
                  saturation: CGFloat, 
                     inputEV: CGFloat) -> Image
@@ -435,7 +435,7 @@ func kf_adjusted(brightness: CGFloat,
 ![][add]
 
 ```swift
-func kf_apply(_ filter: Filter) -> Image
+func kf.apply(_ filter: Filter) -> Image
 ```
 
 ---

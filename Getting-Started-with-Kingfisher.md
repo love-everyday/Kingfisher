@@ -18,7 +18,7 @@ The simplest using case is setting an image to an image view with extension:
 
 ```swift
 let url = URL(string: "url_of_your_image")
-imageView.kf_setImage(with: url)
+imageView.kf.setImage(with: url)
 ```
 
 It will download the image from `url`, send it to both memory and disk cache, then show it in the `imageView`. When you use the same code later, the image will be retrieved from cache and show immediately.

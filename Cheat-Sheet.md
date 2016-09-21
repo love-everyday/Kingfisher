@@ -10,7 +10,7 @@ Some convenient extensions are supplied in Kingfisher. It covers most used featu
 
 ```swift
 let url = URL(string: "https://domain.com/image.jpg")!
-imageView.kf_setImage(with: url)
+imageView.kf.setImage(with: url)
 ```
 
 > Kingfisher will try to get the image from cache first. If not found, download and cache it for later use.
@@ -21,20 +21,20 @@ imageView.kf_setImage(with: url)
 
 ```swift
 let resource = ImageResource(downloadURL: url, cacheKey: "my_cache_key")
-imageView.kf_setImage(with: resource)
+imageView.kf.setImage(with: resource)
 ```
 
 #### With a placeholder image while downloading
 
 ```swift
 let image = UIImage(named: "default_profile_icon")
-imageView.kf_setImage(with: url, placeholder: image)
+imageView.kf.setImage(with: url, placeholder: image)
 ```
 
 #### With a completion handler
 
 ```swift
-imageView.kf_setImage(with: url, completionHandler: { 
+imageView.kf.setImage(with: url, completionHandler: { 
     (image, error, cacheType, imageUrl) in
     // image: Image? `nil` means failed
     // error: NSError? non-`nil` means failed
@@ -49,8 +49,8 @@ imageView.kf_setImage(with: url, completionHandler: {
 #### With a loading indicator while downloading
 
 ```swift
-imageView.kf_indicatorType = .activity
-imageView.kf_setImage(with: url)
+imageView.kf.indicatorType = .activity
+imageView.kf.setImage(with: url)
 ```
 
 #### Use your own GIF file or any image as the indicator image while downloading
@@ -59,9 +59,9 @@ imageView.kf_setImage(with: url)
 let p = Bundle.main.path(forResource: "loader", ofType: "gif")!
 let data = try! Data(contentsOf: URL(fileURLWithPath: p))
 
-imageView.kf_indicatorType = .image(imageData: data)
+imageView.kf.indicatorType = .image(imageData: data)
 
-imageView.kf_setImage(with: url)
+imageView.kf.setImage(with: url)
 ```
 
 #### Customize the indicator with any view you want
@@ -79,13 +79,13 @@ struct MyIndicator: Indicator {
 }
 
 let i = MyIndicator()
-imageView.kf_indicatorType = .custom(indicator: i)
+imageView.kf.indicatorType = .custom(indicator: i)
 ```
 
 #### Or update your own indicator UI with progress block
 
 ```swift
-imageView.kf_setImage(with: url, progressBlock: {
+imageView.kf.setImage(with: url, progressBlock: {
     receivedSize, totalSize in
     let percentage = (Float(receivedSize) / Float(totalSize)) * 100.0
     print("downloading progress: \(percentage)%")
@@ -96,14 +96,14 @@ imageView.kf_setImage(with: url, progressBlock: {
 #### Add a fade transition when setting image after downloaded
 
 ```swift
-imageView.kf_setImage(with: url, options: [.transition(.fade(0.2))])
+imageView.kf.setImage(with: url, options: [.transition(.fade(0.2))])
 ```
 
 #### Transform downloaded image to round corner before displaying and caching
 
 ```swift
 let processor = RoundCornerImageProcessor(cornerRadius: 20)
-imageView.kf_setImage(with: url, placeholder: nil, options: [.processor(processor)])
+imageView.kf.setImage(with: url, placeholder: nil, options: [.processor(processor)])
 ```
 
 > You can also use other processor to get blur/tint/black & white or some other effect.
@@ -112,31 +112,31 @@ imageView.kf_setImage(with: url, placeholder: nil, options: [.processor(processo
 
 ```swift
 let processor = BlurImageProcessor(blurRadius: 4) >> RoundCornerImageProcessor(cornerRadius: 20)
-imageView.kf_setImage(with: url, placeholder: nil, options: [.processor(processor)])
+imageView.kf.setImage(with: url, placeholder: nil, options: [.processor(processor)])
 ```
 
 #### Skip cache searching, force downloading image again 
 
 ```swift
-imageView.kf_setImage(with: url, options: [.forceRefresh])
+imageView.kf.setImage(with: url, options: [.forceRefresh])
 ```
 
 #### Only search cache for the image, do not download if not existing
 
 ```swift
-imageView.kf_setImage(with: url, options: [.onlyFromCache])
+imageView.kf.setImage(with: url, options: [.onlyFromCache])
 ```
 
 #### For `UIButton` & `NSButton`
 
 ```swift
 let uiButton: UIButton = //...
-uiButton.kf_setImage(with: url, for: .normal, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
-uiButton.kf_setBackgroundImage(with: url, for: .normal, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+uiButton.kf.setImage(with: url, for: .normal, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+uiButton.kf.setBackgroundImage(with: url, for: .normal, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
 
 let nsButton: NSButton = //...
-nsButton.kf_setImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
-nsButton.kf_setAlternateImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+nsButton.kf.setImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+nsButton.kf.setAlternateImage(with: url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
 ```
 
 ### Cache & Downloader
@@ -255,7 +255,7 @@ downloader.downloadTimeout = 150.0
 let cache = ImageCache(name: "longer_cache")
 cache.maxDiskCacheSize = 60 * 60 * 24 * 30
 
-imageView.kf_setImage(with: url, options: [.downloader(downloader), .targetCache(cache)])
+imageView.kf.setImage(with: url, options: [.downloader(downloader), .targetCache(cache)])
 ```
 
 #### Cancel a downloading or retriving task
@@ -264,14 +264,14 @@ imageView.kf_setImage(with: url, options: [.downloader(downloader), .targetCache
 // In table view data source
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     //...
-    cell.imageView.kf_setImage(with: url)
+    cell.imageView.kf.setImage(with: url)
     //...
 }
 
 // In table view delegate
 func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 	//...
-	cell.imageView.kf_cancelDownloadTask()
+	cell.imageView.kf.cancelDownloadTask()
 }
 ```
 
@@ -283,7 +283,7 @@ let modifier = AnyModifier { request in
     r.setValue("", forHTTPHeaderField: "Access-Token")
     return r
 }       
-imageView.kf_setImage(with: url, placeholder: nil, options: [.requestModifier(modifier)])
+imageView.kf.setImage(with: url, placeholder: nil, options: [.requestModifier(modifier)])
 ```
 
 #### Authentication with `NSURLCredential`
@@ -338,9 +338,9 @@ imageDownloader.sessionConfiguration = //...
 
 ```swift
 // Just without anything
-imageView.kf_setImage(with: url)
+imageView.kf.setImage(with: url)
 // It equals to
-imageView.kf_setImage(with: url, options: [.processor(DefaultImageProcessor.default)])
+imageView.kf.setImage(with: url, options: [.processor(DefaultImageProcessor.default)])
 ```
 
 > `DefaultImageProcessor` converts downloaded data to a corresponded image object. PNG, JPEG and GIF are supported by default.
@@ -369,7 +369,7 @@ let processor = ColorControlsProcessor(brightness: 1.0, contrast: 0.7, saturatio
 // Black & White
 let processor = BlackWhiteProcessor()
 
-imageView.kf_setImage(with: url, options: [.processor(processor)])
+imageView.kf.setImage(with: url, options: [.processor(processor)])
 ```
 
 #### Concatenating processors
@@ -377,7 +377,7 @@ imageView.kf_setImage(with: url, options: [.processor(processor)])
 ```swift
 // Blur and then make round corner
 let processor = BlurImageProcessor(blurRadius: 5.0) >> RoundCornerImageProcessor(cornerRadius: 20)
-imageView.kf_setImage(with: url, options: [.processor(processor)])
+imageView.kf.setImage(with: url, options: [.processor(processor)])
 
 // `>>` equals the `append(another:)` method of `ImageProcessor`.
 // Above equals to:
@@ -409,7 +409,7 @@ struct WebpProcessor: ImageProcessor {
 // Then pass it to the `setImage` methods:
 let processor = WebpProcessor()
 let url = URL(string: "https://yourdomain.com/example.webp")
-imageView.kf_setImage(with: url, options: [.processor(processor)])
+imageView.kf.setImage(with: url, options: [.processor(processor)])
 ```
 
 #### Create a processor from `CIFilter`
@@ -438,7 +438,7 @@ When you use the extension methods of Kingfisher, please make sure to pass the `
 ```swift
 let processor = WebpProcessor()
 let url = URL(string: "https://yourdomain.com/example.webp")
-imageView.kf_setImage(with: url, options: [.processor(processor)])
+imageView.kf.setImage(with: url, options: [.processor(processor)])
 
 // Later
 ImageCache.default.isImageCached(
@@ -454,9 +454,9 @@ ImageCache.default.isImageCached(
 
 ```swift
 // Just without anything
-imageView.kf_setImage(with: url)
+imageView.kf.setImage(with: url)
 // It equals to
-imageView.kf_setImage(with: url, options: [.cacheSerializer(DefaultCacheSerializer.default)])
+imageView.kf.setImage(with: url, options: [.cacheSerializer(DefaultCacheSerializer.default)])
 ```
 
 > `DefaultCacheSerializer` converts cached data to a corresponded image object and vice versa. PNG, JPEG and GIF are supported by default.
@@ -479,7 +479,7 @@ struct WebpCacheSerializer: CacheSerializer {
 // Then pass it to the `setImage` methods:
 let serializer = WebpCacheSerializer()
 let url = URL(string: "https://yourdomain.com/example.webp")
-imageView.kf_setImage(with: url, options: [.cacheSerializer(serializer)])
+imageView.kf.setImage(with: url, options: [.cacheSerializer(serializer)])
 ```
 
 ### Prefetch
@@ -496,15 +496,15 @@ let prefetcher = ImagePrefetcher(urls: urls) {
 prefetcher.start()
 
 // Later when you need to display these images:
-imageView.kf_setImage(with: urls[0])
-anotherImageView.kf_setImage(with: urls[1])
+imageView.kf.setImage(with: urls[0])
+anotherImageView.kf.setImage(with: urls[1])
 ```
 
 ### Animated GIF
 
 ```swift
 let imageView = AnimatedImageView()
-imageView.kf_setImage(with: URL(string: "your_animated_gif_image_url")!)
+imageView.kf.setImage(with: URL(string: "your_animated_gif_image_url")!)
 ```
 
 > Use `AnimatedImageView` instead of regular image view to display GIF in a more efficient way. It will only decode several frames of your GIF image to get a smaller memory footprint. You can set the frame count you need to pre-load by setting the framePreloadCount property of an `AnimatedImageView` (default is 10).
@@ -515,13 +515,13 @@ Some processor/filter code is exposed, that means you can apply it seperately on
 
 ```swift
 extension Image {
-    public func kf_image(withRoundRadius radius: CGFloat, fit size: CGSize, scale: CGFloat) -> Image { }
-    public func kf_resize(to size: CGSize) -> Image { }
-    public func kf_blurred(withRadius radius: CGFloat) -> Image { }
-    public func kf_overlaying(with color: Color, fraction: CGFloat) -> Image { }
-    public func kf_tinted(with color: Color) -> Image { }
-    public func kf_adjusted(brightness: CGFloat, contrast: CGFloat, saturation: CGFloat, inputEV: CGFloat) -> Image { }
-    public func kf_apply(_ filter: Filter) -> Image { }
+    public func kf.image(withRoundRadius radius: CGFloat, fit size: CGSize, scale: CGFloat) -> Image { }
+    public func kf.resize(to size: CGSize) -> Image { }
+    public func kf.blurred(withRadius radius: CGFloat) -> Image { }
+    public func kf.overlaying(with color: Color, fraction: CGFloat) -> Image { }
+    public func kf.tinted(with color: Color) -> Image { }
+    public func kf.adjusted(brightness: CGFloat, contrast: CGFloat, saturation: CGFloat, inputEV: CGFloat) -> Image { }
+    public func kf.apply(_ filter: Filter) -> Image { }
 }
 ```
 
