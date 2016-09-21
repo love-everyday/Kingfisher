@@ -500,6 +500,26 @@ imageView.kf.setImage(with: urls[0])
 anotherImageView.kf.setImage(with: urls[1])
 ```
 
+### Use `Prefetcher` with `UICollectionView` or `UITableView`
+
+In iOS 10, Apple introduced a cell prefetching behavior. It could work seamlessly with Kingfisher's `ImagePrefetcher`.
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    collectionView?.prefetchDataSource = self
+}
+
+extension ViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let urls = indexPaths.flatMap { URL(string: $0.urlString) }
+        ImagePrefetcher(urls: urls).start()
+    }
+}
+```
+
+See [WWDC 16 - Session 219](https://developer.apple.com/videos/play/wwdc2016/219/) for more about changing of it in iOS 10.
+
 ### Animated GIF
 
 ```swift
