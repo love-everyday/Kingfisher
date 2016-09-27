@@ -239,6 +239,17 @@ ImageCache.default.maxDiskCacheSize = 60 * 60 * 24 * 3
 // Default value is 60 * 60 * 24 * 7, which means 1 week.
 ```
 
+#### Add a default path extension to each cached file
+
+```swift
+// Set a default path extension
+KingfisherManager.shared.cache.pathExtension = "jpg"
+```
+
+> Especially useful when using Kingfisher on macOS and wanting to add
+drag-drop. Most web input fields won't accept files without a path
+extension (like .jpg).
+
 #### Set timeout duration for default image downloader
 
 ```swift
@@ -546,4 +557,3 @@ extension Image {
 ```
 
 Please also see the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) to find out more.
-
