@@ -337,7 +337,7 @@ extension ViewController: ImageDownloaderDelegate {
 let imageDownloader: ImageDownloader = //...
 
 // A configuration without persistent storage for caches is 
-// requsted for downloader working correctly.
+// requsted for downloader working correctly. (Based on `URLSessionConfiguration.ephemeral`)
 imageDownloader.sessionConfiguration = //...
 ```
 
@@ -557,3 +557,4 @@ extension Image {
 ```
 
 Please also see the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) to find out more.
+
