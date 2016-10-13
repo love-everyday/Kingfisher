@@ -235,7 +235,7 @@ cache.cleanExpiredDiskCache()
 
 ```swift
 // 3 days
-ImageCache.default.maxDiskCacheSize = 60 * 60 * 24 * 3
+ImageCache.default.maxCachePeriodInSecond = 60 * 60 * 24 * 3
 // Default value is 60 * 60 * 24 * 7, which means 1 week.
 ```
 
@@ -557,4 +557,3 @@ extension Image {
 ```
 
 Please also see the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) to find out more.
-
