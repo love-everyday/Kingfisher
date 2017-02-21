@@ -534,11 +534,25 @@ See [WWDC 16 - Session 219](https://developer.apple.com/videos/play/wwdc2016/219
 ### Animated GIF
 
 ```swift
-let imageView = AnimatedImageView()
+let imageView: UIImageView = ...
 imageView.kf.setImage(with: URL(string: "your_animated_gif_image_url")!)
 ```
 
-> Use `AnimatedImageView` instead of regular image view to display GIF in a more efficient way. It will only decode several frames of your GIF image to get a smaller memory footprint. You can set the frame count you need to pre-load by setting the framePreloadCount property of an `AnimatedImageView` (default is 10).
+> If you encountered to memory issues when dealing with large GIF, try to use `AnimatedImageView` instead of regular image view to display GIF. It will only decode several frames of your GIF image to get a smaller memory footprint (but high CPU load).
+
+```swift
+let imageView = AnimatedImageView()
+imageView.kf.setImage(with: URL(string: "your_large_animated_gif_image_url")!)
+```
+
+### Only load the first frame from GIF
+
+```swift
+imageView.kf.setImage(with: URL(string: "your_animated_gif_image_url")!, 
+                   options: [.onlyLoadFirstFrame])
+```
+
+It will be useful when you just want to display a static preview of the first frame from a GIF image.
 
 ### Useful image extensions
 
@@ -557,3 +571,5 @@ extension Image {
 ```
 
 Please also see the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) to find out more.
+
+
