@@ -1,0 +1,1 @@
+[Installation](https://github.com/onevcat/Kingfisher/wiki/Install-Kingfisher) - [Cheat Sheet](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet) - [FAQ](https://github.com/onevcat/Kingfisher/wiki/FAQ) - [API Reference](http://cocoadocs.org/docsets/Kingfisher/)
