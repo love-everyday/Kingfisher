@@ -575,6 +575,6 @@ extension Image {
 }
 ```
 
-Please also see the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) to find out more.
+Please also see the full [API Reference](http://onevcat.github.io/Kingfisher/) to find out more.
 
 
