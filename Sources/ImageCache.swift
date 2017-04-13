@@ -40,7 +40,7 @@ public extension Notification.Name {
      
      The main purpose of this notification is supplying a chance to maintain some necessary information on the cached files. See [this wiki](https://github.com/onevcat/Kingfisher/wiki/How-to-implement-ETag-based-304-(Not-Modified)-handling-in-Kingfisher) for a use case on it.
      */
-    public static var KingfisherDidCleanDiskCache = Notification.Name.init("com.onevcat.Kingfisher.KingfisherDidCleanDiskCache")
+    public static var KingfisherDidCleanDiskCache = Notification.Name("com.onevcat.Kingfisher.KingfisherDidCleanDiskCache")
 }
 
 /**
@@ -109,7 +109,7 @@ open class ImageCache {
     /// Closure that defines the disk cache path from a given path and cacheName.
     public typealias DiskCachePathClosure = (String?, String) -> String
     
-    /// The default DiskCachePathClosure
+    /// The default DiskCachePathClosure 默认Disk的缓存路径
     public final class func defaultDiskCachePathClosure(path: String?, cacheName: String) -> String {
         let dstPath = path ?? NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
         return (dstPath as NSString).appendingPathComponent(cacheName)
@@ -119,9 +119,9 @@ open class ImageCache {
     Init method. Passing a name for the cache. It represents a cache folder in the memory and disk.
     
     - parameter name: Name of the cache. It will be used as the memory cache name and the disk cache folder name 
-                      appending to the cache path. This value should not be an empty string.
+                      appending to the cache path. This value should not be an empty string. 用于disk和memory缓存名称和多线程Dispatch的label名称。
     - parameter path: Optional - Location of cache path on disk. If `nil` is passed in (the default value),
-                      the `.cachesDirectory` in of your app will be used.
+                      the `.cachesDirectory` in of your app will be used.缓存到disk的路径
     - parameter diskCachePathClosure: Closure that takes in an optional initial path string and generates
                       the final disk cache path. You could use it to fully customize your cache path.
     
@@ -138,12 +138,14 @@ open class ImageCache {
         
         let cacheName = "com.onevcat.Kingfisher.ImageCache.\(name)"
         memoryCache.name = cacheName
-        
+        /* Disk的缓存路径 */
         diskCachePath = diskCachePathClosure(path, cacheName)
         
+        /* 实例化用于读写图片的多线程DispatchQueue */
         let ioQueueName = "com.onevcat.Kingfisher.ImageCache.ioQueue.\(name)"
         ioQueue = DispatchQueue(label: ioQueueName)
         
+        /* 实例化用于处理图片下载和图片存储的多线程DispatchQueue */
         let processQueueName = "com.onevcat.Kingfisher.ImageCache.processQueue.\(name)"
         processQueue = DispatchQueue(label: processQueueName, attributes: .concurrent)
         
@@ -191,6 +193,7 @@ open class ImageCache {
     {
         
         let computedKey = key.computedKey(with: identifier)
+        /* 存储在Memory中 */
         memoryCache.setObject(image, forKey: computedKey as NSString, cost: image.kf.imageCost)
 
         func callHandlerInMainQueue() {
@@ -203,14 +206,15 @@ open class ImageCache {
         
         if toDisk {
             ioQueue.async {
-                
+                /* 存储到Disk中 */
                 if let data = serializer.data(with: image, original: original) {
                     if !self.fileManager.fileExists(atPath: self.diskCachePath) {
                         do {
+                            /* 创建用于缓存图片的文件夹 */
                             try self.fileManager.createDirectory(atPath: self.diskCachePath, withIntermediateDirectories: true, attributes: nil)
                         } catch _ {}
                     }
-                    
+                    /* 写入图片文件 */
                     self.fileManager.createFile(atPath: self.cachePath(forComputedKey: computedKey), contents: data, attributes: nil)
                 }
                 callHandlerInMainQueue()
@@ -283,7 +287,7 @@ open class ImageCache {
         
         var block: RetrieveImageDiskTask?
         let options = options ?? KingfisherEmptyOptionsInfo
-        
+        /* 从MemoryCache中检索key对应的图片 */
         if let image = self.retrieveImageInMemoryCache(forKey: key, options: options) {
             options.callbackDispatchQueue.safeAsync {
                 completionHandler(image, .memory)
@@ -292,6 +296,7 @@ open class ImageCache {
             var sSelf: ImageCache! = self
             block = DispatchWorkItem(block: {
                 // Begin to load image from disk
+                /* 从Disk的缓存中检索key对应的图片 */
                 if let image = sSelf.retrieveImageInDiskCache(forKey: key, options: options) {
                     if options.backgroundDecode {
                         sSelf.processQueue.async {
@@ -388,7 +393,9 @@ open class ImageCache {
     open func clearDiskCache(completion handler: (()->())? = nil) {
         ioQueue.async {
             do {
+                /* 删除Disk的缓存文件夹 */
                 try self.fileManager.removeItem(atPath: self.diskCachePath)
+                /* 创建用于Disk缓存的文件夹 */
                 try self.fileManager.createDirectory(atPath: self.diskCachePath, withIntermediateDirectories: true, attributes: nil)
             } catch _ { }
             

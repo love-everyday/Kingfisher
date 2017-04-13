@@ -153,10 +153,12 @@ func <== (lhs: KingfisherOptionsInfoItem, rhs: KingfisherOptionsInfoItem) -> Boo
 }
 
 extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
+    //顺序匹配Collection中的元素，当匹配上后，返回该Element
     func firstMatchIgnoringAssociatedValue(_ target: Iterator.Element) -> Iterator.Element? {
         return index { $0 <== target }.flatMap { self[$0] }
     }
     
+    //移除匹配target的元素，最后返回移除对应元素后的Collection
     func removeAllMatchesIgnoringAssociatedValue(_ target: Iterator.Element) -> [Iterator.Element] {
         return self.filter { !($0 <== target) }
     }
@@ -211,6 +213,7 @@ public extension Collection where Iterator.Element == KingfisherOptionsInfoItem 
     
     /// Whether the transition should always happen or not.
     public var forceTransition: Bool {
+        
         return contains{ $0 <== .forceTransition }
     }
     

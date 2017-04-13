@@ -45,6 +45,7 @@ import CoreImage
 #endif
 
 // MARK: - Image Properties
+// 为Kingfisher对象或Image对象，添加存储属性或者计算属性
 extension Kingfisher where Base: Image {
     fileprivate(set) var animatedImageData: Data? {
         get {
@@ -121,6 +122,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Conversion
+// 将CGImage或[Image]转换为Image
 extension Kingfisher where Base: Image {
     #if os(macOS)
     static func image(cgImage: CGImage, scale: CGFloat, refImage: Image?) -> Image {
@@ -171,6 +173,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Representation
+// 获取Image的Data内容
 extension Kingfisher where Base: Image {
     // MARK: - PNG
     public func pngRepresentation() -> Data? {
@@ -205,6 +208,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Create images from data
+//通过Data创建Image
 extension Kingfisher where Base: Image {
     static func animated(with data: Data, scale: CGFloat = 1.0, duration: TimeInterval = 0.0, preloadAll: Bool, onlyFirstFrame: Bool = false) -> Image? {
         
@@ -335,6 +339,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Transforming
+// Image变形(切圆角，更换大小，)
 extension Kingfisher where Base: Image {
 
     // MARK: - Round Corner
@@ -651,7 +656,7 @@ public struct DataProxy {
 }
 
 extension Data: KingfisherCompatible {
-    public typealias CompatibleType = DataProxy
+//    public typealias CompatibleType = DataProxy
     public var kf: DataProxy {
         return DataProxy(proxy: self)
     }

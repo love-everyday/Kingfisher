@@ -93,7 +93,6 @@ class KingfisherOptionsInfoTests: XCTestCase {
             .keepCurrentImageWhileLoading,
             .onlyLoadFirstFrame
         ]
-        
         XCTAssertTrue(options.targetCache === cache)
         XCTAssertTrue(options.downloader === downloader)
 
@@ -103,7 +102,6 @@ class KingfisherOptionsInfoTests: XCTestCase {
         default: XCTFail()
         }
 #endif
-        
         XCTAssertEqual(options.downloadPriority, 0.8)
         XCTAssertTrue(options.forceRefresh)
         XCTAssertTrue(options.cacheMemoryOnly)

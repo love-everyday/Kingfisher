@@ -59,11 +59,11 @@ extension Kingfisher where Base: ImageView {
     {
         guard let resource = resource else {
             base.image = placeholder
-            setWebURL(nil)
+//            setWebURL(nil)
+            webURL = nil
             completionHandler?(nil, nil, .none, nil)
             return .empty
         }
-        
         var options = options ?? KingfisherEmptyOptionsInfo
         
         if !options.keepCurrentImageWhileLoading {
@@ -73,12 +73,15 @@ extension Kingfisher where Base: ImageView {
         let maybeIndicator = indicator
         maybeIndicator?.startAnimatingView()
         
-        setWebURL(resource.downloadURL)
+//        setWebURL(resource.downloadURL)
+        webURL = resource.downloadURL
 
+        //？？？if判断必定true，肯定会预加载gif数据，为啥还要做个if判断？？？
         if base.shouldPreloadAllGIF() {
             options.append(.preloadAllGIFData)
         }
         
+        //retrieveImage 检索图片(储存中的)
         let task = KingfisherManager.shared.retrieveImage(
             with: resource,
             options: options,
@@ -92,11 +95,14 @@ extension Kingfisher where Base: ImageView {
             },
             completionHandler: {[weak base] image, error, cacheType, imageURL in
                 DispatchQueue.main.safeAsync {
+                    //imageURL == self.webUR 判断是否是需要的
                     guard let strongBase = base, imageURL == self.webURL else {
                         return
                     }
+                    //将base动态添加的属性(key为imageTaskKey)的值置nil
                     self.setImageTask(nil)
                     guard let image = image else {
+                        //图片下载失败
                         maybeIndicator?.stopAnimatingView()
                         completionHandler?(nil, error, cacheType, imageURL)
                         return
@@ -152,12 +158,24 @@ private var imageTaskKey: Void?
 
 extension Kingfisher where Base: ImageView {
     /// Get the image URL binded to this image view.
+    /*
     public var webURL: URL? {
         return objc_getAssociatedObject(base, &lastURLKey) as? URL
     }
     
     fileprivate func setWebURL(_ url: URL?) {
         objc_setAssociatedObject(base, &lastURLKey, url, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    */
+    
+    //webURL用于在图片下载完后，返回的下载链接和webURL对照是否一样，来判断是否是当前ImageView需要的图片
+    public fileprivate(set) var webURL: URL? {
+        get {
+            return objc_getAssociatedObject(base, &lastURLKey) as? URL
+        }
+        set {
+            objc_setAssociatedObject(base, &lastURLKey, newValue as URL?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
     
     /// Holds which indicator type is going to be used.
@@ -284,7 +302,7 @@ extension ImageView {
     @available(*, deprecated, message: "Extensions directly on image views are deprecated.", renamed: "kf.setImageTask")
     fileprivate func kf_setImageTask(_ task: RetrieveImageTask?) { kf.setImageTask(task) }
     @available(*, deprecated, message: "Extensions directly on image views are deprecated.", renamed: "kf.setWebURL")
-    fileprivate func kf_setWebURL(_ url: URL) { kf.setWebURL(url) }
+    fileprivate func kf_setWebURL(_ url: URL) { kf.webURL = url }
 }
 
 extension ImageView {
