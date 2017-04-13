@@ -7,7 +7,7 @@
 * [Getting Started with Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Getting-Started-with-Kingfisher)
     * [Install Kingfisher](https://github.com/onevcat/Kingfisher/wiki/Installation-Guide)
     * [Cheat Sheet](https://github.com/onevcat/Kingfisher/wiki/Cheat-Sheet)
-* [API Reference](http://cocoadocs.org/docsets/Kingfisher/)
+* [API Reference](http://onevcat.github.io/Kingfisher/)
 
 ## Migration Guide
 

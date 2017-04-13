@@ -239,6 +239,8 @@ ImageCache.default.maxCachePeriodInSecond = 60 * 60 * 24 * 3
 // Default value is 60 * 60 * 24 * 7, which means 1 week.
 ```
 
+> Set this value to a negative value (like `-1`) will make the disk cache never expiring.
+
 #### Add a default path extension to each cached file
 
 ```swift
@@ -364,6 +366,9 @@ let processor = RoundCornerImageProcessor(cornerRadius: 20)
 
 // Resizing
 let processor = ResizingImageProcessor(targetSize: CGSize(width: 100, height: 100))
+
+// Cropping
+let processor = CroppingImageProcessor(size: CGSize(width: 100, height: 100), anchor: CGPoint(x: 0.5, y: 0.5))
 
 // Blur with a radius
 let processor = BlurImageProcessor(blurRadius: 5.0)
@@ -570,6 +575,6 @@ extension Image {
 }
 ```
 
-Please also see the full [API Reference](http://cocoadocs.org/docsets/Kingfisher/) to find out more.
+Please also see the full [API Reference](http://onevcat.github.io/Kingfisher/) to find out more.
 
 
